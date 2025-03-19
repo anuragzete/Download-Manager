@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>Download_Manager</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${project.version}</version> <!-- Dynamic versioning -->
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -38,6 +38,7 @@
 
     <build>
         <plugins>
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
@@ -46,7 +47,41 @@
                     <target>21</target>
                 </configuration>
             </plugin>
+
+            <!-- Maven Deploy Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <altDeploymentRepository>github::default::https://maven.pkg.github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME</altDeploymentRepository>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <!-- GitHub Packages Distribution Management -->
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/anuragzete/Download-Manager</url>
+        </repository>
+    </distributionManagement>
+
+    <!-- Maven repositiories -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
